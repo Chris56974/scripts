@@ -1,6 +1,6 @@
 # Tree GPT
 
-Different ƒiles have useful comments.
+Prints the contents of the file directory for use in pasting to chatGPT
 
 ```bash
 cargo add crate
