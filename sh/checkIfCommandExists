@@ -1,0 +1,26 @@
+#!/bin/sh
+
+check_if_cmd_exists() {
+  # Must declare first b4 you can call it
+
+  # -v verify
+  # 0 stdin, 1 stdout, 2 stderr
+  # >/dev/null (stdout -> trash)
+  # 2>&1 (stderr -> same place as stdout i.e. trash)
+  if command -v "$1" >/dev/null 2>&1; then
+    echo "Command '$1' exists."
+  else
+    echo "Command '$1' not found" >&2
+    exit 1
+  fi
+}
+
+[ "$1" ] && check_if_cmd_exists "$1" && exit 0
+
+echo "Which command would you like to check for?"
+
+# -r (raw mode) treats backslashes as literals
+read -r choice
+check_if_cmd_exists "$choice"
+
+./show_script.sh "$0"

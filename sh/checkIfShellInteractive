@@ -1,3 +1,4 @@
 #!/bin/sh
 
+# $- 
 [[ $- == *i* ]] && echo 'Interactive' || echo 'Not interactive'

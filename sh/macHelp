@@ -1,0 +1,47 @@
+shell_info() {
+    echo "Current shell instance (you could be nested though)"
+    echo $0
+    echo "I think sh is symlinked to bash"
+    echo "readlink -f /bin/sh"
+    readlink -f /bin/sh
+
+    echo "type sh"
+    type sh
+
+
+    # runs the script inline in this process
+    source ./checkIfCommandExists dash
+}
+
+c_info() {
+    echo "gcc -> clang (/usr/bin/gcc -> clang)"
+    echo ""
+    echo "The include paths (clang -E -v - < /dev/null)"
+    echo "/dev/null is stdinput for clang -E -v"
+
+    # -E
+    # clang -E -v - < /dev/null # find include paths
+
+    # xcrun --show-sdk-path # find the sdk paths
+}
+
+print_and_exit() {
+    echo ""
+    exit 0
+}
+
+while true; do
+    echo "Choose an option:"
+    echo "1. shell info"
+    echo "2. C info"
+    echo "3. print this script"
+    echo "4. Exit"
+    read -r choice
+    case $choice in
+    1) shell_info ;;
+    2) c_info ;;
+    3) ./show_script $0 ;;
+    4) print_and_exit ;;
+    *) echo "Invalid choice. Try again." ;;
+    esac
+done
