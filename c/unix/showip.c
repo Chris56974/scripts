@@ -1,5 +1,4 @@
 // https://beej.us/guide/bgnet/source/examples/showip.c
-
 #include <stdio.h>
 #include <string.h>
 #include <sys/types.h>

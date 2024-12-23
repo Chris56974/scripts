@@ -1,0 +1,7 @@
+#!/bin/sh
+
+# IFS "Internal Field Separator"
+# Default will interpret spaces as separate inputs -> Hello World -> "Hello" "World"
+# IFS="" -> Hello World -> "Hello World"
+echo "IFS example"
+IFS="" read newPrefix

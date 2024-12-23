@@ -1,16 +1,22 @@
 shell_info() {
     echo "Current shell instance (you could be nested though)"
     echo $0
-    echo "I think sh is symlinked to bash"
+
+    echo "Other shells available"
+    type sh && type bash && type dash && type csh && type ksh 
+
+    echo "\nI think sh is symlinked to bash"
     echo "readlink -f /bin/sh"
-    readlink -f /bin/sh
 
-    echo "type sh"
-    type sh
+    # -f follow every symlink
+    # send output to dev/null, send errors to the same place as stdout (dev/null)
+    readlink -f /bin/sh > /dev/null 2>&1 && echo "sh is symlinked" || echo "sh is not symlinked"
 
+    echo "\nCurrent shell options (\$-)"
+    echo "$-\n"
 
-    # runs the script inline in this process
-    source ./checkIfCommandExists dash
+    # Check if login shell (-q quiet and returns a status code)
+    shopt -q login_shell && echo 'Login shell' || echo 'Not login shell'
 }
 
 c_info() {
@@ -19,10 +25,18 @@ c_info() {
     echo "The include paths (clang -E -v - < /dev/null)"
     echo "/dev/null is stdinput for clang -E -v"
 
-    # -E
-    # clang -E -v - < /dev/null # find include paths
+    # -E stop after preprocessing
+    # -v verbose
+    # - stdinput (dev/null in this case)
+    clang -E -v - < /dev/null # find include paths
 
-    # xcrun --show-sdk-path # find the sdk paths
+    # xcode run
+    xcrun --show-sdk-path # find the sdk paths
+}
+
+java_info() {
+    echo "This shows where the java_home is (I think?)"
+    /usr/libexec/java_home -V
 }
 
 print_and_exit() {
@@ -31,17 +45,23 @@ print_and_exit() {
 }
 
 while true; do
-    echo "Choose an option:"
+    echo "This script helps me figure out stuff about my macOS system." 
+    echo "Press the following number for help \n" 
+
     echo "1. shell info"
     echo "2. C info"
-    echo "3. print this script"
-    echo "4. Exit"
+    echo "3. Java info"
+    echo "4. Print this script"
+    echo "5. Exit"
+
     read -r choice
     case $choice in
     1) shell_info ;;
     2) c_info ;;
+    2) java_info ;;
     3) ./show_script $0 ;;
     4) print_and_exit ;;
+    5) exit 0 ;;
     *) echo "Invalid choice. Try again." ;;
     esac
 done

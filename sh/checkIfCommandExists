@@ -1,7 +1,7 @@
 #!/bin/sh
 
 check_if_cmd_exists() {
-  # Must declare first b4 you can call it
+  # Must declare the function first b4 you can call it
 
   # -v verify
   # 0 stdin, 1 stdout, 2 stderr

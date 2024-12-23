@@ -1,25 +1,18 @@
 #!/bin/sh
 
-echo ""
-echo "What file extension would you like to change?"
-echo ""
-
+echo "When given a file extension this script will rewrite every file with that extension to the one of your choosing"
+echo "Which file extension should change?"
 read fileExtension
-echo ""
 
 # if the file extension starts with a dot, remove it
 [ "${fileExtension::1}" = "." ] && fileExtension="${fileExtension#.}"
 
-for file in *.${fileExtension}; do
-  echo ${file}
+for file in *.$fileExtension; do
+  echo "$file \n"
 done
 
-echo ""
-echo "What should the new file extension be?"
-echo ""
-
+echo "What should the new file extension be? \n"
 read newFileExtension
-echo ""
 
 # if the file extension came with a dot, remove it
 [ "${newFileExtension::1}" = "." ] && newFileExtension="${newFileExtension#.}"
@@ -29,5 +22,3 @@ echo ""
 for file in *.${fileExtension}; do
   mv "${file}" "${file%.${fileExtension}}.${newFileExtension}"
 done
-
-echo ""

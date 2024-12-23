@@ -1,8 +1,0 @@
-#!/bin/sh
-
-echo "Running..."
-echo "/usr/libexec/java_home -V"
-echo ""
-
-/usr/libexec/java_home -V
-echo "\n"

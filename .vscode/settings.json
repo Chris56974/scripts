@@ -3,4 +3,7 @@
     "cpp": "cd $dir && g++ -std=c++17 -stdlib=libc++ $fileName -o $fileNameWithoutExt && $dir$fileNameWithoutExt",
     "csharp": "dotnet script"
   },
+  "files.associations": {
+    "socket.h": "c"
+  },
 }
