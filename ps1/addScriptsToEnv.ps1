@@ -12,7 +12,8 @@ $envPathArray = $currentPath.Split(';')
 
 # Check if the folder is already in PATH
 if ($envPathArray -Contains $folderToAddToEnv) {
-    Write-Output "$folderToAddToEnv is already on the user's PATH."
+    Write-Output "$folderToAddToEnv is already on the user's PATH. `n"
+    Write-Output $envPathArray
 } else {
     Write-Output "Adding $folderToAddToEnv to PATH `n"
 
