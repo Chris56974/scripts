@@ -1,0 +1,43 @@
+GAI_STRERROR(3) 	   Library Functions Manual	       GAI_STRERROR(3)
+
+NAME
+     gai_strerror – get error message string from EAI_xxx error code
+
+SYNOPSIS
+     #include <sys/types.h>
+     #include <sys/socket.h>
+     #include <netdb.h>
+
+     const char *
+     gai_strerror(int ecode);
+
+DESCRIPTION
+     The gai_strerror() function returns an error message string corresponding
+     to the error code returned by getaddrinfo(3) or getnameinfo(3).
+
+     The following error codes and their meaning are defined in <netdb.h>:
+
+	   EAI_ADDRFAMILY    address family for nodename not supported
+	   EAI_AGAIN	     temporary failure in name resolution
+	   EAI_BADFLAGS      invalid value for ai_flags
+	   EAI_BADHINTS      invalid value for hints
+	   EAI_FAIL	     non-recoverable failure in name resolution
+	   EAI_FAMILY	     ai_family not supported
+	   EAI_MEMORY	     memory allocation failure
+	   EAI_NODATA	     no address associated with nodename
+	   EAI_NONAME	     hostname or servname not provided, or not known
+	   EAI_OVERFLOW      argument buffer overflow
+	   EAI_PROTOCOL      resolved protocol is unknown
+	   EAI_SERVICE	     servname not supported for ai_socktype
+	   EAI_SOCKTYPE      ai_socktype not supported
+	   EAI_SYSTEM	     system error returned in errno
+
+RETURN VALUES
+     The gai_strerror() function returns a pointer to the error message string
+     corresponding to ecode.  If ecode is out of range, an implementation-
+     specific error message string is returned.
+
+SEE ALSO
+     getaddrinfo(3), getnameinfo(3)
+
+macOS 15.2			 May 21, 2006			    macOS 15.2
