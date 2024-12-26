@@ -1,3 +1,5 @@
+#!/bin/sh
+
 shell_info() {
     echo "Current shell instance (you could be nested though)"
     echo $0

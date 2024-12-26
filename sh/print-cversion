@@ -1,0 +1,8 @@
+#!/bin/sh
+
+# -dM dump macros
+# -E preprocess only (to prevent compilation, linking)
+# -x c force the language mode to be c, regardless of the file extension
+# /dev/null read in an empty file
+gcc -dM -E -x c /dev/null | grep __STDC_VERSION__
+g++ -dM -E -x c++ /dev/null | grep __cplusplus
